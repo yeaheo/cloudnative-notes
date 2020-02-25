@@ -1,7 +1,9 @@
 ### 微软 helm 仓库镜像
-`stable`: https://mirror.azure.cn/kubernetes/charts/
 
-`incubator`: https://mirror.azure.cn/kubernetes/charts-incubator/
+```yaml
+stable: https://mirror.azure.cn/kubernetes/charts/
+incubator: https://mirror.azure.cn/kubernetes/charts-incubator/
+```
 
 将微软的 `helm` 仓库镜像添加到 `helm` 中:
 
