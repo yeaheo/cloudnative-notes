@@ -1,3 +1,14 @@
+### 官方 helm 仓库
+
+helm 官方的仓库如下所示:
+
+```yaml
+https://kubernetes-charts.storage.googleapis.com/
+
+stable: https://hub.kubeapps.com/charts/stable
+incubator: https://hub.kubeapps.com/charts/incubator
+```
+
 ### 微软 helm 仓库镜像
 
 ```yaml
