@@ -4,7 +4,7 @@ helm 官方的仓库如下所示:
 
 ```yaml
 https://kubernetes-charts.storage.googleapis.com/
-
+---
 stable: https://hub.kubeapps.com/charts/stable
 incubator: https://hub.kubeapps.com/charts/incubator
 ```
