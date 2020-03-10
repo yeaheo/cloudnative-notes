@@ -58,3 +58,14 @@ $ kubectl create secret docker-registry xx --docker-server=xx --docker-username=
 ```bash
 $ kubectl create secret tls xx --key xx --cert xx -n xx
 ```
+
+### 节点维护
+
+```bash
+# 标记某个节点不可调度
+$ kubectl cordon <node_name>
+# 标记某个节点可以调度
+$ kubectl uncordon <node_name>
+# 清空某个节点，包括标记不可调度和驱逐pod
+$ kubectl drain <node_name>
+```
