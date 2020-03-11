@@ -76,7 +76,7 @@ $ kubectl drain  <node_name>
 ## 但是直接使用命令一般不会成功，建议在要维护节点时，加上以下参数：
 $ kubectl drain <node_name>  --ignore-daemonsets  --force  --delete-local-data
 
-## --ignore-daemonsets 忽略 daemonset 部署的 pod
+s## --ignore-daemonsets 忽略 daemonset 部署的 pod
 ## --force 直接删除不由 workload 对象（Deployment、Job等）管理的 pod
 ## --delete-local-data  直接删除挂载有本地目录(empty-dir方式）的 pod
 ```
