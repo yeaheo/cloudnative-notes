@@ -59,13 +59,24 @@ $ kubectl create secret docker-registry xx --docker-server=xx --docker-username=
 $ kubectl create secret tls xx --key xx --cert xx -n xx
 ```
 
-### 节点维护
+### 节点管理
+
+在集群节点出问题时，可能希望把一个节点不再被调度 pod 或把节点当前存在的 pod 都驱逐出去
 
 ```bash
-# 标记某个节点不可调度
+# 标记 node 为 unschedulable , 禁止 pod 被调度过来。注意这时现有的 pod 还会继续运行，不会被驱逐。
 $ kubectl cordon <node_name>
-# 标记某个节点可以调度
+
+# 与 cordon 相反，标记 node 为允许调度。
 $ kubectl uncordon <node_name>
-# 清空某个节点，包括标记不可调度和驱逐pod
-$ kubectl drain <node_name>
+
+# 把 node 的当前 pod 平滑切换到其他 node，同时标记 node 为 unschedulable，也就是包含了 cordon 效果。
+$ kubectl drain  <node_name>
+
+## 但是直接使用命令一般不会成功，建议在要维护节点时，加上以下参数：
+$ kubectl drain <node_name>  --ignore-daemonsets  --force  --delete-local-data
+
+## --ignore-daemonsets 忽略 daemonset 部署的 pod
+## --force 直接删除不由 workload 对象（Deployment、Job等）管理的 pod
+## --delete-local-data  直接删除挂载有本地目录(empty-dir方式）的 pod
 ```
