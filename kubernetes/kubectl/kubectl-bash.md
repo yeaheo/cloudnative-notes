@@ -80,3 +80,12 @@ $ kubectl drain <node_name>  --ignore-daemonsets  --force  --delete-local-data
 ## --force 直接删除不由 workload 对象（Deployment、Job等）管理的 pod
 ## --delete-local-data  直接删除挂载有本地目录(empty-dir方式）的 pod
 ```
+
+### 部署时检测 yaml 文件
+
+有时候我们用于部署应用的 `yaml` 有拼写错误，例如，容器的 `command` 写成了 `comnd` ，这个时候当我们 `apply` 的时候不容易被发现，这个时候可以添加 `--validate` 参数检测:
+
+```bash
+$ kubectl apply -f demo.yaml --dry-run --validate
+```
+
