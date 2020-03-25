@@ -48,7 +48,7 @@ kubeadm join 172.17.0.2:6443 --token i8s131.w7mfu9ppflygkqgb     --discovery-tok
 查看新的 token 如下:
 
 ```bash
-$kubeadm token list
+$ kubeadm token list
 TOKEN                     TTL         EXPIRES                USAGES                   DESCRIPTION                                                EXTRA GROUPS
 abcdef.0123456789abcdef   2h          2020-03-19T11:53:03Z   authentication,signing   <none>                                                     system:bootstrappers:kubeadm:default-node-token
 i8s131.w7mfu9ppflygkqgb   23h         2020-03-20T09:28:54Z   authentication,signing   <none>                                                     system:bootstrappers:kubeadm:default-node-token
