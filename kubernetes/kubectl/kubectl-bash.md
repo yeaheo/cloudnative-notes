@@ -1,4 +1,4 @@
-## kubectl 常用命令
+## kubectl 杂谈
 
 ### 获取集群证书相关信息
 ```bash
@@ -88,4 +88,3 @@ $ kubectl drain <node_name>  --ignore-daemonsets  --force  --delete-local-data
 ```bash
 $ kubectl apply -f demo.yaml --dry-run --validate
 ```
-
