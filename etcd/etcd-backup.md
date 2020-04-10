@@ -54,7 +54,11 @@ $ kubectl -n kube-system describe pods kube-apiserver-myk8s-control-plane | grep
 拼接备份命令:
 
 ```bash
-ETCDCTL_API=3 etcdctl --endpoints https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/apiserver-etcd-client.crt --key=/etc/kubernetes/pki/apiserver-etcd-client.key snapshot save snapshotdb
+ETCDCTL_API=3 etcdctl --endpoints https://127.0.0.1:2379 \
+--cacert=/etc/kubernetes/pki/etcd/ca.crt \
+--cert=/etc/kubernetes/pki/apiserver-etcd-client.crt \
+--key=/etc/kubernetes/pki/apiserver-etcd-client.key \
+snapshot save snapshotdb
 ```
 
 官方参考链接：[etcd 创建快照](https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster)
