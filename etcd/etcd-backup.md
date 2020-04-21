@@ -1,4 +1,4 @@
-### ETCD 备份
+## ETCD 备份
 
 所有 Kubernetes 对象都存储在 etcd 中。所以定期备份 etcd 集群数据对于在灾难情况下（例如丢失所有主节点）恢复 Kubernetes 集群非常重要。
 
@@ -9,7 +9,7 @@
 - etcd 内置的快照方式
 - 卷快照
 
-#### 内置的快照方式（Built-in snapshot）
+### 内置的快照方式（Built-in snapshot）
 
 我们可以用 `etcdctl snapshot save` 保存快照，具体备份细节如下：
 
