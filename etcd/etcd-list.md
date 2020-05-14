@@ -25,7 +25,12 @@ ETCD 我们平时常用的操作就那么几种：
 ### 查看节点
 
 ```bash
-$ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/etcd/healthcheck-client.key --endpoints ${ETCD_ENDPOINTS} member list -w table
+$ etcdctl \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+  --endpoints ${ETCD_ENDPOINTS} \
+  member list -w table
 +------------------+---------+------------+--------------------------+--------------------------+------------+
 |        ID        | STATUS  |    NAME    |        PEER ADDRS        |       CLIENT ADDRS       | IS LEARNER |
 +------------------+---------+------------+--------------------------+--------------------------+------------+
@@ -38,7 +43,12 @@ $ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/et
 ### 查看节点健康状态
 
 ```bash
-$ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/etcd/healthcheck-client.key --endpoints ${ETCD_ENDPOINTS} endpoint health -w table
+$ etcdctl \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+  --endpoints ${ETCD_ENDPOINTS} \
+  endpoint health -w table
 +--------------------------+--------+-------------+-------+
 |         ENDPOINT         | HEALTH |    TOOK     | ERROR |
 +--------------------------+--------+-------------+-------+
@@ -51,7 +61,12 @@ $ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/et
 ### 查看节点状态（leader 信息）
 
 ```bash
-$ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/etcd/healthcheck-client.key --endpoints ${ETCD_ENDPOINTS} endpoint status -w table
+$ etcdctl \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+  --endpoints ${ETCD_ENDPOINTS} \
+  endpoint status -w table
 +--------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 |         ENDPOINT         |        ID        | VERSION | DB SIZE | IS LEADER | IS LEARNER | RAFT TERM | RAFT INDEX | RAFT APPLIED INDEX | ERRORS |
 +--------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
@@ -64,7 +79,12 @@ $ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/et
 ### 查看所有 key
 
 ```bash
-$ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/etcd/healthcheck-client.key --endpoints ${ETCD_ENDPOINTS} get / --prefix --keys-only
+$ etcdctl \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+  --endpoints ${ETCD_ENDPOINTS} \
+  get / --prefix --keys-only
 ...
 /registry/services/endpoints/kubernetes-dashboard/kubernetes-dashboard
 
@@ -83,6 +103,11 @@ $ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/et
 ### 查看某个 key
 
 ```bash
-$ etcdctl --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt --key=/etc/kubernetes/pki/etcd/healthcheck-client.key --endpoints ${ETCD_ENDPOINTS} get /registry/services/specs/kubernetes-dashboard/kubernetes-dashboard -w=json | jq .
+$ etcdctl \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/healthcheck-client.crt \
+  --key=/etc/kubernetes/pki/etcd/healthcheck-client.key \
+  --endpoints ${ETCD_ENDPOINTS} \
+  get /registry/services/specs/kubernetes-dashboard/kubernetes-dashboard -w=json | jq .
 ```
 
