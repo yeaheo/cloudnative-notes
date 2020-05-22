@@ -2,7 +2,7 @@
 
 有时候需要将外部文件拷贝到运行 pod 内，或者将运行 pod 内的文件拷贝到外部，这个时候需要用到 `kubectl cp` 命令。
 
-### Local to Remote
+### 本地到远程 pod 容器
 
 拷贝本地文件到运行 pod 容器：
 
@@ -22,10 +22,10 @@ $ kubectl cp /tmp/foo <some-pod>:/tmp/bar -c <specific-container>
 $ kubectl cp /tmp/foo <some-namespace>/<some-pod>:/tmp/bar
 ```
 
-### Remote to Local
+### 远程 pod 容器到本地
 
 拷贝运行 pod 容器文件到本地，其实可以参考拷贝本地文件至 pod 容器，只需要将源地址和目的地址对调即可。
 
-### Links
+### 官方链接
 
 - https://kubectl.docs.kubernetes.io/pages/container_debugging/copying_container_files.html
