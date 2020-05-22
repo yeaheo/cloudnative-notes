@@ -25,3 +25,7 @@ $ kubectl cp /tmp/foo <some-namespace>/<some-pod>:/tmp/bar
 ### Remote to Local
 
 拷贝运行 pod 容器文件到本地，其实可以参考拷贝本地文件至 pod 容器，只需要将源地址和目的地址对调即可。
+
+### Links
+
+- https://kubectl.docs.kubernetes.io/pages/container_debugging/copying_container_files.html
