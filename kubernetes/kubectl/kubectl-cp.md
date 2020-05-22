@@ -28,4 +28,4 @@ $ kubectl cp /tmp/foo <some-namespace>/<some-pod>:/tmp/bar
 
 ### 官方链接
 
-- https://kubectl.docs.kubernetes.io/pages/container_debugging/copying_container_files.html
+https://kubectl.docs.kubernetes.io/pages/container_debugging/copying_container_files.html
