@@ -50,6 +50,30 @@ $ kubectl get pods --field-selector=spec.nodeName=<node_name>
 $ kubectl get pods <pod_name> -o yaml --export
 ```
 
+查看 pod 按名称排序：
+
+```bash
+$ kubectl get pods --sort-by='.metadata.name'
+```
+
+列出 pods 按照重启次数进行排序:
+
+```bash
+$ kubectl get pods --sort-by='.status.containerStatuses[0].restartCount'
+```
+
+获取所有工作节点(使用选择器以排除标签名称为 'node-role.kubernetes.io/master' 的结果):
+
+```bash
+$ kubectl get nodes --selector='!node-role.kubernetes.io/master'
+```
+
+pod 按照创建时间排序：
+
+```bash
+$ kubectl -n <namespace> get pods --sort-by='.metadata.creationTimestamp'
+```
+
 #### `kubectl delete`
 
 使用 pod.yaml 文件中指定的类型和名称删除 pod：
@@ -88,5 +112,40 @@ $ kubectl exec <pod-name> -c <container_name> -- date
 
 ```bash
 $ kubectl exec -it <pod_name> -- bash/sh
+```
+
+#### `与运行中的容器进行交互`
+
+```bash
+kubectl logs my-pod                                 # 获取 pod 日志(标准输出)
+kubectl logs -l name=myLabel                        # 获取 pod label name=myLabel 日志(标准输出)
+kubectl logs my-pod --previous                      # 获取上个容器实例的 pod 日志(标准输出)
+kubectl logs my-pod -c my-container                 # 获取 pod 的容器日志 (标准输出, 多容器的场景)
+kubectl logs -l name=myLabel -c my-container        # 获取 label name=myLabel pod 的容器日志 (标准输出, 多容器的场景)
+kubectl logs my-pod -c my-container --previous      # 获取 pod 的上个容器实例日志 (标准输出, 多容器的场景)
+kubectl logs -f my-pod                              # 流式输出 pod 的日志 (标准输出)
+kubectl logs -f my-pod -c my-container              # 流式输出 pod 容器的日志 (标准输出, 多容器的场景)
+kubectl logs -f -l name=myLabel --all-containers    # 流式输出 label name=myLabel pod 的日志 (标准输出)
+kubectl run -i --tty busybox --image=busybox -- sh  # 以交互式 shell 运行 pod
+kubectl attach my-pod -i                            # 进入到一个运行中的容器中
+kubectl port-forward my-pod 5000:6000               # 在本地计算机上侦听端口 5000 并转发到 my-pod 上的端口 6000
+kubectl exec my-pod -- ls /                         # 在已有的 pod 中运行命令(单容器的场景)
+kubectl exec my-pod -c my-container -- ls /         # 在已有的 pod 中运行命令(多容器的场景)
+kubectl top pod POD_NAME --containers               # 显示给定 pod 和容器的监控数据
+```
+
+#### ```与节点和集群进行交互```
+
+```bash
+kubectl cordon my-node                                                # 设置 my-node 节点为不可调度
+kubectl drain my-node                                                 # 对 my-node 节点进行驱逐操作，为节点维护做准备
+kubectl uncordon my-node                                              # 设置 my-node 节点为可以调度
+kubectl top node my-node                                              # 显示给定 node 的指标
+kubectl cluster-info                                                  # 显示 master 和 services 的地址
+kubectl cluster-info dump                                             # 将当前集群状态输出到标准输出
+kubectl cluster-info dump --output-directory=/path/to/cluster-state   # 将当前集群状态输出到 /path/to/cluster-state
+
+# 如果已存在具有该键和效果的污点，则其值将按指定替换
+kubectl taint nodes foo dedicated=special-user:NoSchedule
 ```
 
