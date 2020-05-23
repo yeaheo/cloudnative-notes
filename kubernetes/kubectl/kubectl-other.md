@@ -44,3 +44,43 @@ $ kubectl get pods,service -n <namespace>
 $ kubectl get pods --field-selector=spec.nodeName=<node_name>
 ```
 
+#### `kubectl delete`
+
+使用 pod.yaml 文件中指定的类型和名称删除 pod：
+
+```bash
+$ kubectl delete -f pod.yaml
+```
+
+删除标签名= <label-name> 的所有 pod 和服务:
+
+```bash
+$ kubectl delete pods,service -l name=<label-name>
+```
+
+删除所有 pod，包括未初始化的 pod:
+
+```bash
+$ kubectl delete pods --all
+```
+
+#### ```kubectl exec```
+
+从 pod <pod-name> 中获取运行 'date' 的输出。默认情况下，输出来自第一个容器:
+
+```bash
+$ kubectl exec <pod-name> -- date
+```
+
+运行命令时指定容器 <container_name>
+
+```bash
+$ kubectl exec <pod-name> -c <container_name> -- date
+```
+
+进入 pod 内的容器：
+
+```bash
+$ kubectl exec -it <pod_name> -- bash/sh
+```
+
