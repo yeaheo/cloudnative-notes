@@ -44,6 +44,12 @@ $ kubectl get pods,service -n <namespace>
 $ kubectl get pods --field-selector=spec.nodeName=<node_name>
 ```
 
+获取一个没有集群特定信息的 YAML:
+
+```bash
+$ kubectl get pods <pod_name> -o yaml --export
+```
+
 #### `kubectl delete`
 
 使用 pod.yaml 文件中指定的类型和名称删除 pod：
